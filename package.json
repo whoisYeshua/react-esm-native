@@ -1,0 +1,16 @@
+{
+  "name": "react-true-esm",
+  "version": "0.0.1",
+  "description": "Check ESM opportunities (draft)",
+  "private": true,
+  "scripts": {
+    "build": "npx babel src --watch --out-dir dist --copy-files"
+  },
+  "author": "whoisYeshua",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-react": "^7.18.6"
+  }
+}

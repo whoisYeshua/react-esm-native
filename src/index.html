@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- scripts -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/stable/react@18.2.0/es2022/react.mjs",
+          "react/jsx-runtime": "https://esm.sh/stable/react@18.2.0/es2022/jsx-runtime.js",
+          "react-dom/client": "https://esm.sh/stable/react-dom@18.2.0/es2022/client.js",
+          "graphql-request": "https://esm.sh/v113/graphql-request@5.2.0/es2022/graphql-request.mjs",
+          "@emotion/css": "https://esm.sh/v113/@emotion/css@11.10.6/es2022/css.mjs"
+        }
+      }
+    </script>
+    <link rel="modulepreload" href="https://esm.sh/v112/scheduler@0.23.0/es2022/scheduler.mjs" />
+    <link rel="modulepreload" href="https://esm.sh/v112/react-dom@18.2.0/es2022/react-dom.mjs" />
+    <link rel="modulepreload" href="https://esm.sh/stable/react@18.2.0/es2022/react.mjs" />
+    <link rel="modulepreload" href="https://esm.sh/stable/react@18.2.0/es2022/jsx-runtime.js" />
+    <link rel="modulepreload" href="https://esm.sh/stable/react-dom@18.2.0/es2022/client.js" />
+    <script src="scripts/index.js" type="module"></script>
+    <title>React ESM</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
