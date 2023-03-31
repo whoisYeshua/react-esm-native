@@ -4,13 +4,19 @@
   "description": "Check ESM opportunities (draft)",
   "private": true,
   "scripts": {
-    "build": "npx babel src --watch --out-dir dist --copy-files"
+    "build": "npm run clean && npm run build:babel",
+    "build:babel": "npx babel src --watch --out-dir dist --copy-files",
+    "build:swc": "npx swc src --watch --out-dir dist --copy-files",
+    "clean": "npx rimraf dist"
   },
   "author": "whoisYeshua",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.21.0",
     "@babel/core": "^7.21.3",
-    "@babel/preset-react": "^7.18.6"
+    "@babel/preset-react": "^7.18.6",
+    "@swc/cli": "^0.1.62",
+    "@swc/core": "^1.3.44",
+    "rimraf": "^4.4.1"
   }
 }
