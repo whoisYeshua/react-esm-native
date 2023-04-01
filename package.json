@@ -1,15 +1,29 @@
 {
-  "name": "react-true-esm",
-  "version": "0.0.1",
-  "description": "Check ESM opportunities (draft)",
+  "name": "react-esm-native",
+  "version": "1.0.0",
+  "description": "Check modern ESM native opportunities in small React web application",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whoisYeshua/react-esm-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/whoisYeshua/react-esm-native/issues"
+  },
+  "homepage": "https://github.com/whoisYeshua/react-esm-native#readme",
   "scripts": {
     "start": "npm run codegen && npm run build",
     "build": "npm run clean && npm run build:babel",
     "build:babel": "npx babel src --watch --out-dir dist --copy-files --extensions '.ts,.tsx'",
     "build:swc": "npx swc src --watch --out-dir dist --copy-files",
     "clean": "npx rimraf dist",
-    "codegen": "graphql-codegen --config graphql.config.json"
+    "codegen": "graphql-codegen --config graphql.config.json",
+    "format": "npm run format:prettier",
+    "format:prettier": "npm run lint:prettier -- --write",
+    "lint": "npm run lint:prettier && npm run lint:typescript",
+    "lint:prettier": "prettier \"**/*.{json,md,js,ts,[jt]sx,[cm][jt]s}\" --check",
+    "lint:typescript": "tsc --noEmit",
+    "prepare": "husky install"
   },
   "author": "whoisYeshua",
   "license": "ISC",
@@ -18,6 +32,8 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
+    "@commitlint/cli": "^17.5.1",
+    "@commitlint/config-conventional": "^17.4.4",
     "@emotion/css": "^11.10.6",
     "@graphql-codegen/cli": "3.2.2",
     "@graphql-codegen/typescript": "^3.0.2",
@@ -28,7 +44,14 @@
     "@types/react-dom": "^18.0.11",
     "graphql": "^16.6.0",
     "graphql-request": "^5.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
     "rimraf": "^4.4.1",
     "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": ">=16.13",
+    "npm": ">= 8.1"
   }
 }

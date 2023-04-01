@@ -1,0 +1,80 @@
+# https://javascript.plainenglish.io/how-to-set-up-github-actions-for-ci-cd-in-react-apps-a49a20129fcc
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '*.md'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the repository 🛎️
+        uses: actions/checkout@v3
+
+      - name: Set up NodeJS environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.19.0'
+          cache: 'npm'
+
+      # looks like actions/setup-node@v3 chache: 'npm' field is enough
+      # # https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows
+      # # https://github.com/actions/cache/blob/main/examples.md#node---npm
+      # - name: Cache dependencies
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Install 🔧
+        run: npm ci
+
+      - name: Check linting and formatting 💅
+        run: npm run lint
+
+      - name: Build with SWC 🏗️
+        run: npm run build:swc
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './dist'
+
+# https://github.com/actions/starter-workflows/blob/main/pages/static.yml
+jons:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+      

@@ -22,8 +22,8 @@ export const Hello = () => {
   }
 
   return (
-    <>
-      <h1>Hello from ESM React ({greeting})</h1>
+    <main>
+      <h1>Hello from React ESM Native ({greeting})</h1>
       <input value={greeting} placeholder="put your greeting" onChange={handleChange} />
       <br />
       <button onClick={handleClick} onFocus={characterImport} onMouseOver={characterImport}>
@@ -38,6 +38,6 @@ export const Hello = () => {
           </div>
         )}
       </Suspense>
-    </>
+    </main>
   )
 }
