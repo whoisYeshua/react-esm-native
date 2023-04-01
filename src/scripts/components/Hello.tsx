@@ -1,7 +1,7 @@
 import { useState, lazy, Suspense } from 'react'
 
 import type { ChangeEventHandler } from 'react'
-import type { CharactersInfoQuery } from '@/codegen-gql-types'
+import type { CharactersInfoQuery } from '@/types/codegen-gql'
 
 const characterImport = async () => await import('./Character.js')
 

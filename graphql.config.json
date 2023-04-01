@@ -5,7 +5,7 @@
     "codegen": {
       "overwrite": true,
       "generates": {
-        "./codegen-gql-types.ts": {
+        "./types/codegen-gql.ts": {
           "plugins": ["typescript", "typescript-operations"],
           "config": {
             "avoidOptionals": true,
