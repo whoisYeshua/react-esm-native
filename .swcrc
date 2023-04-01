@@ -1,13 +1,24 @@
 {
   "jsc": {
     "parser": {
-      "syntax": "ecmascript",
+      "syntax": "typescript",
       "jsx": true
     },
     "transform": {
       "react": {
         "runtime": "automatic"
       }
+    },
+    "target": "es2022",
+    "loose": false,
+    "minify": {
+      "compress": false,
+      "mangle": false
     }
-  }
+  },
+  "module": {
+    "type": "es6"
+  },
+  "minify": false,
+  "isModule": true
 }

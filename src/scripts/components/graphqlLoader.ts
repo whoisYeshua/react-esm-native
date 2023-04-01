@@ -1,7 +1,9 @@
 import { request, gql } from 'graphql-request'
 
+import type { CharactersInfoQuery } from '@/codegen-gql-types'
+
 const query = gql`
-  {
+  query CharactersInfo {
     characters {
       results {
         name
@@ -12,7 +14,10 @@ const query = gql`
 `
 
 export const loader = async () => {
-  const { characters } = await request('https://rickandmortyapi.com/graphql', query)
+  const { characters } = await request<CharactersInfoQuery>(
+    'https://rickandmortyapi.com/graphql',
+    query
+  )
 
   return characters.results
 }

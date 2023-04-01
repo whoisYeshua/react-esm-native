@@ -1,18 +1,23 @@
 import { useState, lazy, Suspense } from 'react'
 
+import type { ChangeEventHandler } from 'react'
+import type { CharactersInfoQuery } from '@/codegen-gql-types'
+
 const characterImport = async () => await import('./Character.js')
 
 const Character = lazy(characterImport)
 
 export const Hello = () => {
   const [greeting, setGreeting] = useState('')
-  const [charactersData, setCharacterData] = useState(null)
+  const [charactersData, setCharacterData] = useState<
+    CharactersInfoQuery['characters']['results'] | null
+  >(null)
 
-  const handleChange = event => setGreeting(event.target.value)
+  const handleChange: ChangeEventHandler<HTMLInputElement> = event =>
+    setGreeting(event.target.value)
   const handleClick = async () => {
     const { loader } = await import('./graphqlLoader.js')
     const characters = await loader()
-    console.log(characters)
     setCharacterData(characters)
   }
 
@@ -28,7 +33,7 @@ export const Hello = () => {
         {charactersData && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             {charactersData.map(character => (
-              <Character key={character.key} {...character} />
+              <Character key={character.name} {...character} />
             ))}
           </div>
         )}
