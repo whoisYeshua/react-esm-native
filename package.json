@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "Check modern ESM native opportunities in small React web application",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whoisYeshua/react-esm-native.git"
+  },
+  "bugs": {
+    "url": "https://github.com/whoisYeshua/react-esm-native/issues"
+  },
+  "homepage": "https://github.com/whoisYeshua/react-esm-native#readme",
   "scripts": {
     "start": "npm run codegen && npm run build",
     "build": "npm run clean && npm run build:babel",
