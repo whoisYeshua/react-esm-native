@@ -14,8 +14,10 @@
   "scripts": {
     "start": "npm run codegen && npm run build",
     "build": "npm run clean && npm run build:babel",
-    "build:babel": "npx babel src --watch --out-dir dist --copy-files --extensions '.ts,.tsx'",
-    "build:swc": "npx swc src --watch --out-dir dist --copy-files",
+    "build:babel": "npx babel src --out-dir dist --copy-files --extensions '.ts,.tsx'",
+    "watch:babel": "npm run build:babel -- --watch",
+    "build:swc": "npx swc src --out-dir dist --copy-files",
+    "watch:swc": "npm run build:swc -- --watch",
     "clean": "npx rimraf dist",
     "codegen": "graphql-codegen --config graphql.config.json",
     "format": "npm run format:prettier",
