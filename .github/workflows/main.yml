@@ -69,7 +69,6 @@ jobs:
           path: './dist'
 
 # https://github.com/actions/starter-workflows/blob/main/pages/static.yml
-jons:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
