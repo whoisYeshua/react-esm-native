@@ -18,11 +18,11 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  
+
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
       - name: Set up NodeJS environment
         uses: actions/setup-node@v3
         with:
-          node-version: '16.19.0'
+          node-version: '18.18.2'
           cache: 'npm'
 
       # looks like actions/setup-node@v3 chache: 'npm' field is enough
@@ -68,7 +68,7 @@ jobs:
         with:
           path: './dist'
 
-# https://github.com/actions/starter-workflows/blob/main/pages/static.yml
+  # https://github.com/actions/starter-workflows/blob/main/pages/static.yml
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -77,4 +77,3 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
-      
