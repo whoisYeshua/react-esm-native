@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request'
 
-import type { CharactersInfoQuery } from '@/types/codegen-gql'
+import type { CharactersInfoQuery } from '$types/codegen-gql'
 
 const query = gql`
   query CharactersInfo {

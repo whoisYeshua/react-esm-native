@@ -1,3 +1,3 @@
-import { Hello } from './components/Hello.js'
+import { Hello } from './components/Hello.tsx'
 
 export const App = () => <Hello />

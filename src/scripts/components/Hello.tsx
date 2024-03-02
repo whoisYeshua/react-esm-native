@@ -1,9 +1,9 @@
 import { useState, lazy, Suspense } from 'react'
 
 import type { ChangeEventHandler } from 'react'
-import type { CharactersInfoQuery } from '@/types/codegen-gql'
+import type { CharactersInfoQuery } from '$types/codegen-gql'
 
-const characterImport = async () => await import('./Character.js')
+const characterImport = () => import('./Character.tsx')
 
 const Character = lazy(characterImport)
 
@@ -15,8 +15,9 @@ export const Hello = () => {
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event =>
     setGreeting(event.target.value)
+
   const handleClick = async () => {
-    const { loader } = await import('./graphqlLoader.js')
+    const { loader } = await import('./graphqlLoader.ts')
     const characters = await loader()
     setCharacterData(characters)
   }
