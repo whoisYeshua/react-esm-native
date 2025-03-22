@@ -20,7 +20,7 @@ export default {
     compact: isMinify,
     minifyInternalExports: isMinify,
   },
-  external: ['react-dom/client', 'react'],
+  external: ['react', 'react-dom/client', '@emotion/css', 'graphql-request'],
   plugins: [
     replace({
       values: {
@@ -33,6 +33,7 @@ export default {
     resolve({
       browser: true,
       preferBuiltins: false,
+      extensions: ['.mjs', '.js', '.json', '.tsx', '.ts'], // needs for '.js' reference in code
     }),
     json(),
     commonjs(),

@@ -13,17 +13,19 @@
     <script type="importmap">
       {
         "imports": {
-          "react": "https://esm.sh/stable/react@18.2.0/es2022/react.mjs",
-          "react-dom/client": "https://esm.sh/stable/react-dom@18.2.0/es2022/client.js",
-          "graphql-request": "https://esm.sh/v128/graphql-request@5.2.0/es2022/graphql-request.mjs",
-          "@emotion/css": "https://esm.sh/v128/@emotion/css@11.10.6/es2022/css.mjs"
+          "react": "https://esm.sh/react@19.0.0/es2022/react.mjs",
+          "react/jsx-runtime": "https://esm.sh/react@19.0.0/es2022/jsx-runtime.mjs",
+          "react-dom/client": "https://esm.sh/react-dom@19.0.0/es2022/client.mjs",
+          "graphql-request": "https://esm.sh/graphql-request@7.1.2/es2022/graphql-request.mjs",
+          "@emotion/css": "https://esm.sh/@emotion/css@11.13.5/es2022/css.mjs"
         }
       }
     </script>
-    <link rel="modulepreload" href="https://esm.sh/stable/react@18.2.0/es2022/react.mjs" />
-    <link rel="modulepreload" href="https://esm.sh/stable/react-dom@18.2.0/es2022/client.js" />
-    <link rel="modulepreload" href="https://esm.sh/v128/react-dom@18.2.0/es2022/react-dom.mjs" />
-    <link rel="modulepreload" href="https://esm.sh/v128/scheduler@0.23.0/es2022/scheduler.mjs" />
+    <!-- // "react/jsx-runtime" for babel & swc buils, so without preload -->
+    <link rel="modulepreload" href="https://esm.sh/react@19.0.0/es2022/react.mjs" />
+    <link rel="modulepreload" href="https://esm.sh/react-dom@19.0.0/es2022/client.mjs" />
+    <link rel="modulepreload" href="https://esm.sh/react-dom@19.0.0/es2022/react-dom.mjs" />
+    <link rel="modulepreload" href="https://esm.sh/scheduler@0.25.0/es2022/scheduler.mjs" />
     <script src="scripts/index.js" type="module"></script>
   </head>
   <body>

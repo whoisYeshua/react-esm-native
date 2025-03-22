@@ -1,25 +1,30 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, lazy, Suspense, use } from 'react'
 
 import type { ChangeEventHandler } from 'react'
-import type { CharactersInfoQuery } from '$types/codegen-gql'
+import type { loader } from './graphqlLoader.ts'
 
-const characterImport = () => import('./Character.tsx')
+const characterImport = () => import('./Character.js')
+const loaderImport = () => import('./graphqlLoader.js')
+
+const prefetchImport = () => {
+  characterImport()
+  loaderImport()
+}
 
 const Character = lazy(characterImport)
 
+type CharactersPromise = ReturnType<typeof loader>
+
 export const Hello = () => {
   const [greeting, setGreeting] = useState('')
-  const [charactersData, setCharacterData] = useState<
-    CharactersInfoQuery['characters']['results'] | null
-  >(null)
+  const [charactersPromise, setCharactersPromise] = useState<CharactersPromise | null>(null)
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = event =>
     setGreeting(event.target.value)
 
   const handleClick = async () => {
-    const { loader } = await import('./graphqlLoader.ts')
-    const characters = await loader()
-    setCharacterData(characters)
+    const { loader } = await loaderImport()
+    setCharactersPromise(loader())
   }
 
   return (
@@ -27,18 +32,26 @@ export const Hello = () => {
       <h1>Hello from React ESM Native ({greeting})</h1>
       <input value={greeting} placeholder="put your greeting" onChange={handleChange} />
       <br />
-      <button onClick={handleClick} onFocus={characterImport} onMouseOver={characterImport}>
+      <button onClick={handleClick} onFocus={prefetchImport} onPointerEnter={prefetchImport}>
         Load Rick and Morty query
       </button>
-      <Suspense>
-        {charactersData && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {charactersData.map(character => (
-              <Character key={character.name} {...character} />
-            ))}
-          </div>
-        )}
+      <Suspense fallback="Loading...">
+        <Characters charactersPromise={charactersPromise} />
       </Suspense>
     </main>
+  )
+}
+
+const Characters = ({ charactersPromise }: { charactersPromise: CharactersPromise | null }) => {
+  const charactersData = charactersPromise ? use(charactersPromise) : null
+
+  if (!charactersData) return null
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      {charactersData.map(character => (
+        <Character key={character.name} {...character} />
+      ))}
+    </div>
   )
 }
