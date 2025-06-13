@@ -64,7 +64,7 @@
     "typescript": "5.8.3"
   },
   "engines": {
-    "node": ">=20.10",
+    "node": ">=20.19.0",
     "npm": ">=9"
   },
   "dependencies": {
