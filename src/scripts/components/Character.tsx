@@ -1,4 +1,4 @@
-import { css } from '@emotion/css'
+import { styled } from 'restyle/styled'
 
 type Status = {
   color: string
@@ -30,27 +30,27 @@ interface CharacterProps {
 const Character = ({ name, status }: CharacterProps) => {
   const statusObj = getStatus(status)
   return (
-    <div className={character}>
-      <h5 className={header}>{name}</h5>
+    <Container>
+      <Header>{name}</Header>
       <span style={{ color: statusObj.color }}>
         {status} - {statusObj.emoji}
       </span>
-    </div>
+    </Container>
   )
 }
 export default Character
 
-const character = css`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  padding: 0.5rem;
-  border: 1px solid lightgrey;
-  border-radius: 6px;
-  max-width: 30vw;
-`
+const Container = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5em',
+  padding: '0.5rem',
+  border: '1px solid lightgrey',
+  borderRadius: '6px',
+  maxWidth: '30vw',
+})
 
-const header = css`
-  margin: 0;
-  font-style: italic;
-`
+const Header = styled('h5', {
+  margin: 0,
+  fontStyle: 'italic',
+})

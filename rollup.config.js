@@ -20,7 +20,14 @@ export default {
     compact: isMinify,
     minifyInternalExports: isMinify,
   },
-  external: ['react', 'react-dom/client', '@emotion/css', 'graphql-request'],
+  external: [
+    'react',
+    'react/jsx-runtime',
+    'react-dom',
+    'react-dom/client',
+    'restyle/styled',
+    'graphql-request',
+  ],
   plugins: [
     replace({
       values: {

@@ -1,4 +1,5 @@
 import { useState, lazy, Suspense, use } from 'react'
+import { preconnect } from 'react-dom'
 
 import type { ChangeEventHandler } from 'react'
 import type { loader } from './graphqlLoader.ts'
@@ -8,7 +9,7 @@ const loaderImport = () => import('./graphqlLoader.js')
 
 const prefetchImport = () => {
   characterImport()
-  loaderImport()
+  loaderImport().then(module => preconnect(module.URL, { crossOrigin: '' })) // https://dev.to/crenshaw_dev/when-the-browser-can-t-take-a-preconnect-hint-6dn
 }
 
 const Character = lazy(characterImport)

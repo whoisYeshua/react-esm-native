@@ -13,11 +13,9 @@ const query = gql`
   }
 `
 
+export const URL = 'https://rickandmortyapi.com/graphql'
 export const loader = async () => {
-  const { characters } = await request<CharactersInfoQuery>(
-    'https://rickandmortyapi.com/graphql',
-    query,
-  )
+  const { characters } = await request<CharactersInfoQuery>(URL, query)
 
   return characters.results
 }
