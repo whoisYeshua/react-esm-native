@@ -32,27 +32,16 @@ jobs:
 
     steps:
       - name: Checkout to the repository 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up NodeJS environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20.19.0'
           cache: 'npm'
 
-      # looks like actions/setup-node@v3 chache: 'npm' field is enough
-      # # https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows
-      # # https://github.com/actions/cache/blob/main/examples.md#node---npm
-      # - name: Cache dependencies
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: ~/.npm
-      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-node-
-
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Install 🔧
         run: npm ci
@@ -64,7 +53,7 @@ jobs:
         run: npm run build:rollup
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: './dist'
 
