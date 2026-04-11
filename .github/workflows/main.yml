@@ -41,7 +41,7 @@ jobs:
           cache: 'npm'
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Install 🔧
         run: npm ci
@@ -53,7 +53,7 @@ jobs:
         run: npm run build:rolldown
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: './dist'
 
@@ -65,4 +65,4 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
