@@ -14,9 +14,11 @@
   "homepage": "https://github.com/whoisYeshua/react-esm-native#readme",
   "scripts": {
     "start": "npm run codegen && npm run build",
-    "build": "npm run clean && npm run build:rolldown",
+    "build": "rimraf dist && npm run build:vendor && npm run build:app && node scripts/render-index-html.mjs",
+    "build:vendor": "cross-env MINIFY=true rolldown -c rolldown.vendor.config.js",
+    "build:app": "cross-env MINIFY=true rolldown -c --environment NODE_ENV:production",
     "dev:build:rolldown": "rimraf dist && rolldown -c --environment NODE_ENV:development",
-    "build:rolldown": "cross-env MINIFY=true rimraf dist && rolldown -c --environment NODE_ENV:production",
+    "build:rolldown": "npm run build:app",
     "watch:rolldown": "npm run build:rolldown -- --watch",
     "build:babel": "npx babel src --out-dir dist --copy-files --extensions '.ts,.tsx'",
     "watch:babel": "npm run build:babel -- --watch",
