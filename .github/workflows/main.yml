@@ -37,7 +37,7 @@ jobs:
       - name: Set up NodeJS environment
         uses: actions/setup-node@v6
         with:
-          node-version: '20.19.0'
+          node-version: '24.15.0'
           cache: 'npm'
 
       - name: Setup Pages
@@ -53,7 +53,7 @@ jobs:
         run: npm run build:rolldown
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5.0.0
+        uses: actions/upload-pages-artifact@v5
         with:
           path: './dist'
 
